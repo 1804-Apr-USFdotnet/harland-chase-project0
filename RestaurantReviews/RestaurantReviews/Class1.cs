@@ -8,5 +8,6 @@ namespace RestaurantReviews
 {
     public class Class1
     {
+        
     }
 }
