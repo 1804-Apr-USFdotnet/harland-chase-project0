@@ -23,7 +23,7 @@ namespace Palindrome
             {
                 a++;
             }
-            while (!char.IsLetterOrDigit(ar[a]))
+            while (!char.IsLetterOrDigit(ar[b]))
             {
                 b--;
             }
@@ -32,7 +32,6 @@ namespace Palindrome
             {
                 if (ar[a] == ar[b])
                 {
-                    Console.WriteLine($"a: {ar[a]}, b: {ar[b]}");
                     a++; b--;
                 } else
                 {

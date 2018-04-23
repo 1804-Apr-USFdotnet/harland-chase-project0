@@ -66,9 +66,8 @@ namespace PalindromeTest
         [TestMethod]
         public void TestMethod9()
         {
-            //bool output = Palindrome.Palindrome.IsPalindrome("a");
-            Assert.IsFalse(char.IsLetterOrDigit(','));
-            Assert.IsFalse(char.IsLetterOrDigit(' '));
+            bool output = Palindrome.Palindrome.IsPalindrome("aaaaaaaaaaaaaa");
+            Assert.IsTrue(output);
         }
     }
 }
