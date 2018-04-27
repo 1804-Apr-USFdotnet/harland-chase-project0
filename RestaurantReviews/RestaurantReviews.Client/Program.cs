@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using RestaurantReviews.Lib;
+using RestaurantReviews.Model;
 
 namespace RestaurantReviews.Client
 {
@@ -13,24 +14,26 @@ namespace RestaurantReviews.Client
         static void Main(string[] args)
         {
             string errorPrefix = "Error: ";
-            string argNumInval = errorPrefix + "Invalid number of arguments";
-            string argFormInval = errorPrefix + "Invalid input format";
-            string argOverflow = errorPrefix + "Invalid input size";
+            string errorArgNumInval = errorPrefix + "Invalid number of arguments";
+            string errorArgFormInval = errorPrefix + "Invalid input format";
+            string errorArgOverflow = errorPrefix + "Invalid input size";
+            string unrecognizedCommand = "Unrecognized command. Type 'help' or '?' for a list of commands.";
 
             int topN;
 
             string[] input;
+            Library lib = new Library();
 
-            Console.WriteLine("*Welcome String*");
+            //Console.WriteLine("*Welcome String*");
 
             while (true)
             {
                 Console.Write(">");
-                input = Parse(Console.ReadLine().ToLower());
+                input = ParseInput(Console.ReadLine().ToLower());
 
                 if (input.Length < 1)
                 {
-                    Console.WriteLine("Unrecognized input");
+                    Console.WriteLine(unrecognizedCommand);
                     continue;
                 }
 
@@ -39,22 +42,22 @@ namespace RestaurantReviews.Client
                     case "top":
                         if (input.Length != 2)
                         {
-                            Console.WriteLine(argNumInval);
+                            Console.WriteLine(errorArgNumInval);
                             break;
                         }
 
                         try
                         {
                             topN = int.Parse(input[1]);
-                            Console.WriteLine();
+                            Display(lib.Sort(SortBy.Score, false, topN));
                         }
                         catch (FormatException)
                         {
-                            Console.WriteLine(argFormInval);
+                            Console.WriteLine(errorArgFormInval);
                         }
                         catch (OverflowException)
                         {
-                            Console.WriteLine(argOverflow);
+                            Console.WriteLine(errorArgOverflow);
                         }
 
                         break;
@@ -75,13 +78,23 @@ namespace RestaurantReviews.Client
                         return;
 
                     default:
-                        Console.WriteLine("Unrecognized command. Type 'help' or '?' for a list of commands.");
+                        Console.WriteLine(unrecognizedCommand);
                         break;
                 }
             }
         }
 
-        private static string[] Parse(string s)
+        private static string[] ParseInput(string s)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void Display(Restaurant[] results)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void Display(Review[] results)
         {
             throw new NotImplementedException();
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RestaurantReviews.Model;
+using System.Data.Entity;
 
 namespace RestaurantReviews.Data
 {
@@ -11,17 +12,17 @@ namespace RestaurantReviews.Data
     {
         // CRUD methods
         // Restaurants
-        Restaurant[] GetRestaurants();
+        DbSet<Restaurant> GetRestaurants();
         Restaurant GetRestaurant(int id);
-        bool AddRestaurant(Restaurant restaurant);
-        Restaurant UpdateRestaurant(int id, Restaurant newValues);
+        int AddRestaurant(Restaurant restaurant);
+        Restaurant UpdateRestaurant(int id, string restname);
         bool RemoveRestaurant(int id);
 
         // Reviews
-        Review[] GetReviews();
+        DbSet<Review> GetReviews();
         Review GetReview(int id);
-        bool AddReview(Review review);
-        Review UpdateReview(int id, Review newValues);
+        int AddReview(Review review);
+        Review UpdateReview(int id, int revscore, int revsubject);
         bool RemoveReview(int id);
     }
 }
