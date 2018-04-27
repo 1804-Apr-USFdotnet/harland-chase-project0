@@ -8,42 +8,45 @@ using RestaurantReviews.Lib;
 
 namespace RestaurantReviews.Client
 {
-    class ConsoleUI
+    class Program
     {
         static void Main(string[] args)
         {
-            string argNumInval = "Invalid number of arguments";
-            string argFormInval = "Invalid input format";
-            string argOverflow = "Invalid input size";
+            string errorPrefix = "Error: ";
+            string argNumInval = errorPrefix + "Invalid number of arguments";
+            string argFormInval = errorPrefix + "Invalid input format";
+            string argOverflow = errorPrefix + "Invalid input size";
 
-            string input;
-            string[] inputSplit;
+            int topN;
+
+            string[] input;
 
             Console.WriteLine("*Welcome String*");
 
-            while(true)
+            while (true)
             {
                 Console.Write(">");
-                input = Console.ReadLine().ToLower();
-                inputSplit = input.Split(' ');
+                input = Parse(Console.ReadLine().ToLower());
 
-                if (inputSplit.Length < 1)
+                if (input.Length < 1)
                 {
-                    Console.WriteLine("Unrecognized");
+                    Console.WriteLine("Unrecognized input");
                     continue;
                 }
-                
-                switch (inputSplit[0])
+
+                switch (input[0])
                 {
                     case "top":
-                        if (inputSplit.Length != 2)
+                        if (input.Length != 2)
                         {
                             Console.WriteLine(argNumInval);
                             break;
                         }
+
                         try
                         {
-                            //TODO
+                            topN = int.Parse(input[1]);
+                            Console.WriteLine();
                         }
                         catch (FormatException)
                         {
@@ -56,21 +59,31 @@ namespace RestaurantReviews.Client
 
                         break;
 
+                    case "search":
+                    case "details":
+                    case "reviews":
+
                     case "?":
                     case "help":
                         Console.WriteLine("List of commands:");
                         Console.WriteLine("");
                         break;
 
+                    case "leave":
                     case "exit":
                     case "quit":
                         return;
 
                     default:
-                        Console.WriteLine("Unrecognized command.");
+                        Console.WriteLine("Unrecognized command. Type 'help' or '?' for a list of commands.");
                         break;
                 }
             }
+        }
+
+        private static string[] Parse(string s)
+        {
+            throw new NotImplementedException();
         }
     }
 }

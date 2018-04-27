@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D8787BB2-1D0D-4EDE-AC73-5FAD95367E5D}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RestaurantReviews</RootNamespace>
-    <AssemblyName>RestaurantReviews</AssemblyName>
+    <ProjectGuid>{91BE7FF8-88EA-458D-BE6D-79626E2D1187}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>RestaurantReviews.Client</RootNamespace>
+    <AssemblyName>RestaurantReviews.Client</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,7 +33,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,17 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lib.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RestaurantReviews.Data\RestaurantReviews.Data.csproj">
-      <Project>{2f89146a-fa47-4a90-a874-c93d2083ff14}</Project>
-      <Name>RestaurantReviews.Data</Name>
-    </ProjectReference>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <ProjectReference Include="..\RestaurantReviews.Lib\RestaurantReviews.Lib.csproj">
+      <Project>{38e69362-6ba7-421b-8afa-d94d80246bf1}</Project>
+      <Name>RestaurantReviews.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RestaurantReviews.Model\RestaurantReviews.Model.csproj">
+      <Project>{bc73466b-9456-471a-b500-3acc05b7dc96}</Project>
+      <Name>RestaurantReviews.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

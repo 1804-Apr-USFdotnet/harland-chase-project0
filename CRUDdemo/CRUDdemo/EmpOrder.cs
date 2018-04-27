@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RestaurantReviews.Model
+namespace CRUDdemo
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Review
+    public partial class EmpOrder
     {
-        public int revid { get; set; }
-        public int revscore { get; set; }
-        public int revsubject { get; set; }
-    
-        public virtual Restaurant Restaurant { get; set; }
+        public int empid { get; set; }
+        public Nullable<System.DateTime> ordermonth { get; set; }
+        public Nullable<int> qty { get; set; }
+        public Nullable<decimal> val { get; set; }
+        public Nullable<int> numorders { get; set; }
     }
 }

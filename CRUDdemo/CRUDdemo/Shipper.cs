@@ -7,23 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RestaurantReviews.Model
+namespace CRUDdemo
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Restaurant
+    public partial class Shipper
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Restaurant()
+        public Shipper()
         {
-            this.Reviews = new HashSet<Review>();
+            this.Orders = new HashSet<Order>();
         }
     
-        public int restid { get; set; }
-        public string restname { get; set; }
+        public int shipperid { get; set; }
+        public string companyname { get; set; }
+        public string phone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

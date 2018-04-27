@@ -7,17 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RestaurantReviews.Model
+namespace CRUDdemo
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Review
+    public partial class OrderDetail
     {
-        public int revid { get; set; }
-        public int revscore { get; set; }
-        public int revsubject { get; set; }
+        public int orderid { get; set; }
+        public int productid { get; set; }
+        public decimal unitprice { get; set; }
+        public short qty { get; set; }
+        public decimal discount { get; set; }
     
-        public virtual Restaurant Restaurant { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual Order Order { get; set; }
     }
 }
