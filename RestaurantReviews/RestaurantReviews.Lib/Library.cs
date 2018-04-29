@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using RestaurantReviews.Data;
 using RestaurantReviews.Model;
-using System.Data;
-using System.Data.Entity;
 
 namespace RestaurantReviews.Lib
 {
@@ -15,26 +13,47 @@ namespace RestaurantReviews.Lib
 
     public class Library
     {
-        private List<Restaurant> restaurants;
-        private List<Review> reviews;
+        private List<Model.Restaurant> restaurants;
         private IDataManager dm;
 
         public Library()
         {
             dm = new AwsTsqlAccessor();
+            restaurants = new List<Model.Restaurant>(dm.GetRestaurants());
         }
         
-        public Restaurant[] Sort(SortBy sortTerm, bool asc, int topN)
+        public Model.Restaurant[] Sort(SortBy sortTerm, bool asc, int topN)
         {
             throw new NotImplementedException();
         }
 
-        public Restaurant[] Sort(SortBy sortTerm, bool asc)
+        public Model.Restaurant[] Sort(SortBy sortTerm, bool asc)
         {
             return Sort(sortTerm, asc, -1);
         }
 
-        public  void Search(string searchTerm)
+
+        public Model.Restaurant[] Search(string[] searchTerms)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Model.Restaurant[] Search(string term)
+        {
+            return Search(new string[] { term });
+        }
+
+        public Model.Review[] GetReviews(string restaurantName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddReview(string restaurantName, int score)
+        {
+            throw new NotImplementedException();
+        }
+
+        private Model.Restaurant RestLookup(string name)
         {
             throw new NotImplementedException();
         }

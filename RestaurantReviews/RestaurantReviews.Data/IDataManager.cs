@@ -12,17 +12,17 @@ namespace RestaurantReviews.Data
     {
         // CRUD methods
         // Restaurants
-        DbSet<Restaurant> GetRestaurants();
-        Restaurant GetRestaurant(int id);
-        int AddRestaurant(Restaurant restaurant);
-        Restaurant UpdateRestaurant(int id, string restname);
+        Model.Restaurant[] GetRestaurants();
+        Model.Restaurant GetRestaurant(int id);
+        int AddRestaurant(Model.Restaurant restaurant);
+        Model.Restaurant UpdateRestaurant(int id, string restname);
         bool RemoveRestaurant(int id);
 
         // Reviews
-        DbSet<Review> GetReviews();
-        Review GetReview(int id);
-        int AddReview(Review review);
-        Review UpdateReview(int id, int revscore, int revsubject);
+        Model.Review[] GetReviews();
+        Model.Review GetReview(int id);
+        int AddReview(Model.Review review);
+        Model.Review UpdateReview(int id, int revscore, int revsubject);
         bool RemoveReview(int id);
     }
 }

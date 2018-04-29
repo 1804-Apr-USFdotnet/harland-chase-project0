@@ -11,8 +11,9 @@ namespace RestaurantReviews.Data
     public class AwsTsqlAccessor : IDataManager
     {
         
-        public int AddRestaurant(Restaurant restaurant)
+        public int AddRestaurant(Model.Restaurant restaurant)
         {
+            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 Restaurant newRest = context.Restaurants.Add(restaurant);
@@ -21,8 +22,9 @@ namespace RestaurantReviews.Data
             }
         }
 
-        public int AddReview(Review review)
+        public int AddReview(Model.Review review)
         {
+            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 Review newRev = context.Reviews.Add(review);
@@ -31,32 +33,36 @@ namespace RestaurantReviews.Data
             }
         }
 
-        public Restaurant GetRestaurant(int id)
+        public Model.Restaurant GetRestaurant(int id)
         {
+            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 return context.Restaurants.Find(id);
             }
         }
 
-        public DbSet<Restaurant> GetRestaurants()
+        public Model.Restaurant[] GetRestaurants()
         {
+            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 return context.Restaurants;
             }
         }
 
-        public Review GetReview(int id)
+        public Model.Review GetReview(int id)
         {
+            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 return context.Reviews.Find(id);
             }
         }
 
-        public DbSet<Review> GetReviews()
+        public Model.Review[] GetReviews()
         {
+            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 return context.Reviews;
@@ -65,6 +71,7 @@ namespace RestaurantReviews.Data
 
         public bool RemoveRestaurant(int id)
         {
+            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 var std = context.Restaurants.Find(id);
@@ -77,6 +84,7 @@ namespace RestaurantReviews.Data
 
         public bool RemoveReview(int id)
         {
+            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 var std = context.Reviews.Find(id);
@@ -87,8 +95,9 @@ namespace RestaurantReviews.Data
             }
         }
 
-        public Restaurant UpdateRestaurant(int id, string restname)
+        public Model.Restaurant UpdateRestaurant(int id, string restname)
         {
+            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 var std = context.Restaurants.Find(id);
@@ -99,8 +108,9 @@ namespace RestaurantReviews.Data
             }
         }
 
-        public Review UpdateReview(int id, int revscore, int revsubject)
+        public Model.Review UpdateReview(int id, int revscore, int revsubject)
         {
+            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 var std = context.Reviews.Find(id);

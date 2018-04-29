@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RestaurantReviews.Model
+namespace RestaurantReviews.Data
 {
     using System;
     using System.Data.Entity;
