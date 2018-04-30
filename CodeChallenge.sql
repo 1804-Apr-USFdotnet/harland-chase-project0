@@ -56,10 +56,10 @@ select *
 from Sales.Orders
 where CustomerID = 1
 
-select sum(Price)
+select Sum(p.Price)
 from Sales.Products as p
-inner join Sales.Orders as o
-on o.ProductID = 1
+cross join Sales.Orders as o
+where p.Name = 'iPhone' and o.ProductID = 1
 go
 
 update Sales.Products
