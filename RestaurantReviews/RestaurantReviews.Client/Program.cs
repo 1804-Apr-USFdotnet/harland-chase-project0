@@ -63,7 +63,7 @@ namespace RestaurantReviews.Client
 
 
             string[] input;
-            Library lib = new Library("test");
+            Library lib = new Library();
 
             Console.WriteLine(welcomeString);
 

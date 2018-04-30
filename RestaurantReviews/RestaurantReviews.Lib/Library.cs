@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RestaurantReviews.Data;
 using RestaurantReviews.Model;
+using System.Xml.Serialization;
 
 namespace RestaurantReviews.Lib
 {
@@ -184,6 +185,16 @@ namespace RestaurantReviews.Lib
             }
 
             return null;
+        }
+
+        public void Serialize()
+        {
+
+        }
+
+        public void Deserialize()
+        {
+
         }
     }
 }

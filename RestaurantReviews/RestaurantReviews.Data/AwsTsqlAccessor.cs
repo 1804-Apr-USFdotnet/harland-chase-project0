@@ -56,6 +56,7 @@ namespace RestaurantReviews.Data
         {
             using (var context = new RestaurantDBEntities())
             {
+                var rests = context.Restaurants.Count();
                 Model.Restaurant[] output = new Model.Restaurant[context.Restaurants.Count()];
                 for (int i = 0; i < output.Length; i++)
                 {
