@@ -20,8 +20,10 @@
           <Property Name="revscore" Type="int" Nullable="false" />
           <Property Name="revsubject" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Reviews__revsubj__5629CD9C">
-          <End Role="Restaurants" Type="Self.Restaurants" Multiplicity="1" />
+        <Association Name="FK_Reviews_restsubj_restid_cascade">
+          <End Role="Restaurants" Type="Self.Restaurants" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Restaurants">
@@ -35,7 +37,7 @@
         <EntityContainer Name="RestaurantDBModelStoreContainer">
           <EntitySet Name="Restaurants" EntityType="Self.Restaurants" Schema="Restaurant" store:Type="Tables" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="Restaurant" store:Type="Tables" />
-          <AssociationSet Name="FK__Reviews__revsubj__5629CD9C" Association="Self.FK__Reviews__revsubj__5629CD9C">
+          <AssociationSet Name="FK_Reviews_restsubj_restid_cascade" Association="Self.FK_Reviews_restsubj_restid_cascade">
             <End Role="Restaurants" EntitySet="Restaurants" />
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>
@@ -51,7 +53,7 @@
           </Key>
           <Property Name="restid" Type="Int32" Nullable="false" />
           <Property Name="restname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Reviews" Relationship="Self.FK__Reviews__revsubj__5629CD9C" FromRole="Restaurants" ToRole="Reviews" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_restsubj_restid_cascade" FromRole="Restaurants" ToRole="Reviews" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -60,10 +62,12 @@
           <Property Name="revid" Type="Int32" Nullable="false" />
           <Property Name="revscore" Type="Int32" Nullable="false" />
           <Property Name="revsubject" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Restaurant" Relationship="Self.FK__Reviews__revsubj__5629CD9C" FromRole="Reviews" ToRole="Restaurants" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Reviews_restsubj_restid_cascade" FromRole="Reviews" ToRole="Restaurants" />
         </EntityType>
-        <Association Name="FK__Reviews__revsubj__5629CD9C">
-          <End Role="Restaurants" Type="Self.Restaurant" Multiplicity="1" />
+        <Association Name="FK_Reviews_restsubj_restid_cascade">
+          <End Role="Restaurants" Type="Self.Restaurant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Restaurants">
@@ -77,7 +81,7 @@
         <EntityContainer Name="RestaurantDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
           <EntitySet Name="Reviews" EntityType="Self.Review" />
-          <AssociationSet Name="FK__Reviews__revsubj__5629CD9C" Association="Self.FK__Reviews__revsubj__5629CD9C">
+          <AssociationSet Name="FK_Reviews_restsubj_restid_cascade" Association="Self.FK_Reviews_restsubj_restid_cascade">
             <End Role="Restaurants" EntitySet="Restaurants" />
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>

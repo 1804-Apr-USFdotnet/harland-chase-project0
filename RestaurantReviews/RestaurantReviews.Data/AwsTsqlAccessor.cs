@@ -39,7 +39,7 @@ namespace RestaurantReviews.Data
                 });
 
                 context.SaveChanges();
-                log.Info("Added review: " + review.);
+                log.Info("Added review: " + review.Id);
                 return newRev.revid;
             }
         }
@@ -130,7 +130,6 @@ namespace RestaurantReviews.Data
 
         public Model.Restaurant UpdateRestaurant(int id, string restname)
         {
-            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 var std = context.Restaurants.Find(id);
@@ -138,13 +137,12 @@ namespace RestaurantReviews.Data
 
                 context.SaveChanges();
                 log.Info("Updated restaurant " + id);
-                return std;
+                return Convert(std);
             }
         }
 
         public Model.Review UpdateReview(int id, int revscore, int revsubject)
         {
-            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 var std = context.Reviews.Find(id);
@@ -153,7 +151,7 @@ namespace RestaurantReviews.Data
 
                 context.SaveChanges();
                 log.Info("Updated review " + id);
-                return std;
+                return Convert(std);
             }
         }
 

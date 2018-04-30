@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6F130D90-C522-4926-92F7-05DC77FE9A12}</ProjectGuid>
+    <ProjectGuid>{1B488A04-F36F-4064-8409-7BC28D2780AD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RestaurantReviews.LibTest</RootNamespace>
-    <AssemblyName>RestaurantReviews.LibTest</AssemblyName>
+    <RootNamespace>RestaurantReviews.ModelTest</RootNamespace>
+    <AssemblyName>RestaurantReviews.ModelTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -48,18 +48,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SearchTest.cs" />
-    <Compile Include="SortTest.cs" />
+    <Compile Include="RestaurantTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RestaurantReviews.Lib\RestaurantReviews.Lib.csproj">
-      <Project>{38e69362-6ba7-421b-8afa-d94d80246bf1}</Project>
-      <Name>RestaurantReviews.Lib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RestaurantReviews.Model\RestaurantReviews.Model.csproj">
       <Project>{bc73466b-9456-471a-b500-3acc05b7dc96}</Project>
       <Name>RestaurantReviews.Model</Name>

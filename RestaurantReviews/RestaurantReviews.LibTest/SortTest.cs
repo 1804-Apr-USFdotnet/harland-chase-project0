@@ -6,7 +6,7 @@ using RestaurantReviews.Model;
 namespace RestaurantReviews.LibTest
 {
     [TestClass]
-    public class LibTest
+    public class SortTest
     {
         [TestMethod]
         public void SortTest1()
@@ -18,10 +18,10 @@ namespace RestaurantReviews.LibTest
 
             Restaurant[] restaurants = lib.Sort(sortScheme, asc, n);
 
-            Assert.Equals(restaurants.Length, n);
-            Assert.Equals(restaurants[0].Name, "Hard_Rock_Cafe");
-            Assert.Equals(restaurants[1].Name, "McDonald's");
-            Assert.Equals(restaurants[2].Name, "Olive_Garden");
+            Assert.AreEqual(restaurants.Length, n);
+            Assert.AreEqual(restaurants[0].Name, "Hard_Rock_Cafe");
+            Assert.AreEqual(restaurants[1].Name, "McDonald's");
+            Assert.AreEqual(restaurants[2].Name, "Olive_Garden");
         }
 
         [TestMethod]
@@ -34,10 +34,10 @@ namespace RestaurantReviews.LibTest
 
             Restaurant[] restaurants = lib.Sort(sortScheme, asc, n);
 
-            Assert.Equals(restaurants.Length, n);
-            Assert.Equals(restaurants[0].Name, "McDonald's");
-            Assert.Equals(restaurants[1].Name, "Subway");
-            Assert.Equals(restaurants[2].Name, "Olive_Garden");
+            Assert.AreEqual(restaurants.Length, n);
+            Assert.AreEqual(restaurants[0].Name, "McDonald's");
+            Assert.AreEqual(restaurants[1].Name, "Subway");
+            Assert.AreEqual(restaurants[2].Name, "Olive_Garden");
         }
 
 
@@ -51,10 +51,10 @@ namespace RestaurantReviews.LibTest
 
             Restaurant[] restaurants = lib.Sort(sortScheme, asc, n);
 
-            Assert.Equals(restaurants.Length, n);
-            Assert.Equals(restaurants[0].Name, "Hard_Rock_Cafe");
-            Assert.Equals(restaurants[1].Name, "Olive_Garden");
-            Assert.Equals(restaurants[2].Name, "Subway");
+            Assert.AreEqual(restaurants.Length, n);
+            Assert.AreEqual(restaurants[0].Name, "Hard_Rock_Cafe");
+            Assert.AreEqual(restaurants[1].Name, "Olive_Garden");
+            Assert.AreEqual(restaurants[2].Name, "Subway");
         }
 
         [TestMethod]
@@ -67,11 +67,11 @@ namespace RestaurantReviews.LibTest
 
             Restaurant[] restaurants = lib.Sort(sortScheme, asc);
 
-            Assert.Equals(restaurants.Length, n);
-            Assert.Equals(restaurants[0].Name, "Hard_Rock_Cafe");
-            Assert.Equals(restaurants[1].Name, "Olive_Garden");
-            Assert.Equals(restaurants[2].Name, "Subway");
-            Assert.Equals(restaurants[3].Name, "McDonald's");
+            Assert.AreEqual(restaurants.Length, n);
+            Assert.AreEqual(restaurants[0].Name, "Hard_Rock_Cafe");
+            Assert.AreEqual(restaurants[1].Name, "Olive_Garden");
+            Assert.AreEqual(restaurants[2].Name, "Subway");
+            Assert.AreEqual(restaurants[3].Name, "McDonald's");
         }
 
 
@@ -81,12 +81,27 @@ namespace RestaurantReviews.LibTest
             Library lib = new Library("test");
             SortBy sortScheme = SortBy.NumReviews;
             bool asc = false;
-            int n = 1;
+            int n = 4;
 
             Restaurant[] restaurants = lib.Sort(sortScheme, asc);
 
-            Assert.Equals(restaurants.Length, n);
-            Assert.Equals(restaurants[0].Name, "McDonald's");
+            Assert.AreEqual(restaurants.Length, n);
+            Assert.AreEqual(restaurants[0].Name, "McDonald's");
+        }
+
+
+        [TestMethod]
+        public void SortTest6()
+        {
+            Library lib = new Library("test");
+            SortBy sortScheme = SortBy.NumReviews;
+            bool asc = false;
+            int n = 1;
+
+            Restaurant[] restaurants = lib.Sort(sortScheme, asc, 1);
+
+            Assert.AreEqual(restaurants.Length, n);
+            Assert.AreEqual(restaurants[0].Name, "McDonald's");
         }
 
     }

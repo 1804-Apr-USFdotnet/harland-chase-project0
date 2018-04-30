@@ -10,7 +10,7 @@ namespace RestaurantReviews.Model
     {
         public int Id { get; private set; }
         public string Name { get; private set; }
-        public int AvgScore { get; private set; }
+        public double AvgScore { get; private set; }
         private List<Review> reviews;
 
         public Restaurant(int id, string name)
@@ -24,7 +24,7 @@ namespace RestaurantReviews.Model
         public void AddReview(Review r)
         {
             reviews.Add(r);
-            AvgScore = AvgScore * (reviews.Count - 1) / reviews.Count + r.Score / reviews.Count;
+            AvgScore = AvgScore * (reviews.Count - 1) / reviews.Count + r.Score / ((double)reviews.Count);
         }
 
         public void AddReviews(Review[] revs)

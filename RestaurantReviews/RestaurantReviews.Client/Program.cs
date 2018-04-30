@@ -32,6 +32,7 @@ namespace RestaurantReviews.Client
             errorArgFormInval = errorPrefix + "Invalid input format.",
             errorFlagArgInval = errorPrefix + "Unrecognized flag argument",
             errorNoResults = errorPrefix + "No results found.",
+            errorNoFind = errorPrefix + "Couldn't find specified restaurant.",
             unrecognizedCommand = "Unrecognized command. Type '"+commandHelp+"' for a list of commands.",
 
             welcomeString = "Welcome to the Restaurant Reviews console UI.  Type '"+commandHelp+"' to see a list of commands.",
@@ -62,7 +63,7 @@ namespace RestaurantReviews.Client
 
 
             string[] input;
-            Library lib = new Library();
+            Library lib = new Library("test");
 
             Console.WriteLine(welcomeString);
 
@@ -123,7 +124,14 @@ namespace RestaurantReviews.Client
                             Console.WriteLine(errorArgNumInval);
                             break;
                         }
-                        Display(lib.Search(RemoveFirst(input)));
+                        try
+                        {
+                            Display(lib.Search(RemoveFirst(input)));
+                        }
+                        catch (NullReferenceException)
+                        {
+                            Console.WriteLine(errorNoFind);
+                        }
                         break;
 
                     case commandDetails:
@@ -135,16 +143,33 @@ namespace RestaurantReviews.Client
 
                         try
                         {
-                            Display(lib.Search(input[1])[0]);
+                            Display(lib.RestLookup(input[1]));
 
                         }
-                        catch (IndexOutOfRangeException)
+                        catch (NullReferenceException)
                         {
-                            Console.WriteLine(errorNoResults);
+                            Console.WriteLine(errorNoFind);
                         }
                         break;
 
                     case commandReviews:
+                        if (input.Length != 2)
+                        {
+                            Console.WriteLine(errorArgNumInval);
+                            break;
+                        }
+
+                        try
+                        {
+                            Display(lib.RestLookup(input[1]).GetReviews());
+
+                        }
+                        catch (NullReferenceException)
+                        {
+                            Console.WriteLine(errorNoFind);
+                        }
+                        break;
+
 
                     case "?":
                     case "??":
@@ -186,33 +211,49 @@ namespace RestaurantReviews.Client
                     }
                 }
 
+                for (int i = 0; i < output.Count(); i++)
+                {
+                    output[i] = output[i].Replace(' ', '_');
+                }
+
+                return output.ToArray();
+
             }
             else
             {
                 return s.Split();
             }
-
-            throw new NotImplementedException();
         }
 
         private static void Display(Restaurant[] results)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Name\tScore");
+            Console.WriteLine("--------------");
+            foreach (Restaurant r in results)
+            {
+                Console.WriteLine(r.Name + "\t" + r.AvgScore);
+            }
         }
 
         private static void Display(Review[] results)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Score:");
+            foreach (Review r in results)
+            {
+                Console.WriteLine(r.Score);
+            }
         }
 
         private static void Display(Restaurant result)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Name\tScore\tReviews");
+            Console.WriteLine("----------------------------");
+            Console.WriteLine(result.Name + "\t" + result.AvgScore + "\t" + result.GetReviews().Count());
         }
 
         private static void Display(Review result)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Score: " + result.Score);
         }
 
 
