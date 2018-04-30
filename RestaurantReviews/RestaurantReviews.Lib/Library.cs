@@ -16,11 +16,25 @@ namespace RestaurantReviews.Lib
         private List<Model.Restaurant> restaurants;
         private IDataManager dm;
 
+        public Library(string mode)
+        {
+            if (mode.ToLower() == "test")
+            {
+                dm = new LocalTestData();
+            }
+            else
+            {
+                dm = new AwsTsqlAccessor();
+            }
+            restaurants = new List<Model.Restaurant>(dm.GetRestaurants());
+        }
+
         public Library()
         {
             dm = new AwsTsqlAccessor();
             restaurants = new List<Model.Restaurant>(dm.GetRestaurants());
         }
+
         
         public Model.Restaurant[] Sort(SortBy sortTerm, bool asc, int topN)
         {
@@ -48,12 +62,19 @@ namespace RestaurantReviews.Lib
             throw new NotImplementedException();
         }
 
-        public void AddReview(string restaurantName, int score)
+        public void AddReview(int restaurantId, int score)
+        {
+            Model.Restaurant rest = RestLookup(restaurantId);
+            int newId = dm.AddReview(new Model.Review(-1, score), restaurantId);
+            rest.AddReview(new Model.Review(newId, score));
+        }
+
+        private Model.Restaurant RestLookup(string name)
         {
             throw new NotImplementedException();
         }
 
-        private Model.Restaurant RestLookup(string name)
+        private Model.Restaurant RestLookup(int id)
         {
             throw new NotImplementedException();
         }

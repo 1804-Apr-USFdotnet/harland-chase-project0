@@ -8,9 +8,10 @@ namespace RestaurantReviews.Model
 {
     public class Review
     {
+        public int Id { get; private set; }
         public int Score { get; private set; }
 
-        public Review(int score)
+        public Review(int id, int score)
         {
             Score = score;
         }

@@ -21,7 +21,7 @@ namespace RestaurantReviews.Data
         // Reviews
         Model.Review[] GetReviews();
         Model.Review GetReview(int id);
-        int AddReview(Model.Review review);
+        int AddReview(Model.Review review, int restId);
         Model.Review UpdateReview(int id, int revscore, int revsubject);
         bool RemoveReview(int id);
     }

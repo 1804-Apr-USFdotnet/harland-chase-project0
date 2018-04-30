@@ -5,92 +5,125 @@ using System.Text;
 using System.Threading.Tasks;
 using RestaurantReviews.Model;
 using System.Data.Entity;
+using NLog;
 
 namespace RestaurantReviews.Data
 {
     public class AwsTsqlAccessor : IDataManager
     {
-        
+        private static Logger log = LogManager.GetCurrentClassLogger();
+
         public int AddRestaurant(Model.Restaurant restaurant)
         {
-            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
-                Restaurant newRest = context.Restaurants.Add(restaurant);
+                Restaurant newRest = context.Restaurants.Add(new Restaurant()
+                {
+                    restname = restaurant.Name
+                });
+
                 context.SaveChanges();
+                log.Info("Added restaurant: " + newRest.restname);
                 return newRest.restid;
             }
         }
 
-        public int AddReview(Model.Review review)
+        public int AddReview(Model.Review review, int restId)
         {
-            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
-                Review newRev = context.Reviews.Add(review);
+                Review newRev = context.Reviews.Add(new Review()
+                {
+                    revscore = review.Score,
+                    revsubject = restId
+                });
+
                 context.SaveChanges();
+                log.Info("Added review: " + review.);
                 return newRev.revid;
             }
         }
 
         public Model.Restaurant GetRestaurant(int id)
         {
-            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
-                return context.Restaurants.Find(id);
+                return Convert(context.Restaurants.Find(id));
             }
         }
 
         public Model.Restaurant[] GetRestaurants()
         {
-            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
-                return context.Restaurants;
+                Model.Restaurant[] output = new Model.Restaurant[context.Restaurants.Count()];
+                for (int i = 0; i < output.Length; i++)
+                {
+                    output[i] = Convert(context.Restaurants.ElementAt(i));
+                }
+
+                return output;
             }
         }
 
         public Model.Review GetReview(int id)
         {
-            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
-                return context.Reviews.Find(id);
+                return Convert(context.Reviews.Find(id));
             }
         }
 
         public Model.Review[] GetReviews()
         {
-            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
-                return context.Reviews;
+                Model.Review[] output = new Model.Review[context.Reviews.Count()];
+                for (int i = 0; i < output.Length; i++)
+                {
+                    output[i] = Convert(context.Reviews.ElementAt(i));
+                }
+
+                return output;
             }
         }
 
         public bool RemoveRestaurant(int id)
         {
-            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 var std = context.Restaurants.Find(id);
                 context.Restaurants.Remove(std);
                 context.SaveChanges();
-
+                if (std != null)
+                {
+                    log.Info("Removed restaurant " + id);
+                }
+                else
+                {
+                    log.Info("Failed to remove restaurant " + id);
+                }
+                
                 return std != null;
             }
         }
 
         public bool RemoveReview(int id)
         {
-            throw new NotImplementedException();
             using (var context = new RestaurantDBEntities())
             {
                 var std = context.Reviews.Find(id);
                 context.Reviews.Remove(std);
-                context.SaveChanges();
 
+                context.SaveChanges();
+                if (std != null)
+                {
+                    log.Info("Removed review " + id);
+                }
+                else
+                {
+                    log.Info("Failed to remove review " + id);
+                }
                 return std != null;
             }
         }
@@ -104,6 +137,7 @@ namespace RestaurantReviews.Data
                 std.restname = restname;
 
                 context.SaveChanges();
+                log.Info("Updated restaurant " + id);
                 return std;
             }
         }
@@ -118,8 +152,25 @@ namespace RestaurantReviews.Data
                 std.revsubject = revsubject;
 
                 context.SaveChanges();
+                log.Info("Updated review " + id);
                 return std;
             }
+        }
+
+
+        private Model.Restaurant Convert(Restaurant rest)
+        {
+            Model.Restaurant output = new Model.Restaurant(rest.restid, rest.restname);
+            foreach (Review rev in rest.Reviews)
+            {
+                output.AddReview(Convert(rev));
+            }
+            return output;
+        }
+
+        private Model.Review Convert(Review rev)
+        {
+            return new Model.Review(rev.revid, rev.revscore);
         }
     }
 }

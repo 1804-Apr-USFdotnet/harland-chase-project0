@@ -27,6 +27,14 @@ namespace RestaurantReviews.Model
             AvgScore = AvgScore * (reviews.Count - 1) / reviews.Count + r.Score / reviews.Count;
         }
 
+        public void AddReviews(Review[] revs)
+        {
+            foreach (Review r in revs)
+            {
+                AddReview(r);
+            }
+        }
+
         public Review[] GetReviews()
         {
             return reviews.ToArray();
