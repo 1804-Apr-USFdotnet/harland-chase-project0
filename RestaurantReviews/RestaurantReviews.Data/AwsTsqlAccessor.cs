@@ -58,9 +58,10 @@ namespace RestaurantReviews.Data
             {
                 var rests = context.Restaurants.Count();
                 Model.Restaurant[] output = new Model.Restaurant[context.Restaurants.Count()];
-                for (int i = 0; i < output.Length; i++)
+                int i = 0;
+                foreach (var r in context.Restaurants)
                 {
-                    output[i] = Convert(context.Restaurants.ElementAt(i));
+                    output[i++] = Convert(r);
                 }
 
                 return output;
@@ -80,9 +81,10 @@ namespace RestaurantReviews.Data
             using (var context = new RestaurantDBEntities())
             {
                 Model.Review[] output = new Model.Review[context.Reviews.Count()];
-                for (int i = 0; i < output.Length; i++)
+                int i = 0;
+                foreach (var r in context.Reviews)
                 {
-                    output[i] = Convert(context.Reviews.ElementAt(i));
+                    output[i++] = Convert(r);
                 }
 
                 return output;

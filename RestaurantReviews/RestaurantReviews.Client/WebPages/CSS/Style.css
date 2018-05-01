@@ -1,0 +1,36 @@
+﻿body{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+header{
+    text-align: center;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+}
+
+nav {
+    word-spacing: 15px;
+}
+
+/*.contactField:valid {
+    color:forestgreen;
+}*/
+
+#contactForm {
+    margin: 10px 7px 2px 4px;
+}
+
+#name, #email, #phone, #contactBody {
+    border: ridge;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+#contactBody {
+    height: 100px;
+}

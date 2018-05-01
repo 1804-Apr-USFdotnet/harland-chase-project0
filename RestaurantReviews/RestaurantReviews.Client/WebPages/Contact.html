@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="CSS/Style.css">
+    <title>Contact</title>
+</head>
+<body>
+    <header>
+        <!--<img src="images/logo.png" alt="Logo">-->
+        <h1>Restaurant Reviews</h1>
+        <nav>
+            <a href="Home.html">Home</a>
+            <a href="Contact.html">Contact</a>
+            <a href="About.html">About</a>
+        </nav>
+        <hr />
+    </header>
+
+    <section>
+
+        <form id="contactForm" name="contactForm" method="get">
+            <fieldset>
+                <legend>Contact us</legend>
+                <input id="name" type="text" class="contactField" required placeholder="name" /> <br/>
+
+                <input id="email" type="email" class="contactField" required placeholder="email" /> <br />
+
+                <input id="phone" type="tel" class="contactField" required placeholder="phone number" pattern="\d{3}[-\s]{0,1}\d{3}[-\s]{0,1}\d{4}" /> <br />
+
+                <textarea id="contactBody" type="text" class="contactField" required placeholder="Your question here"></textarea> <br />
+                <input type="submit" value="submit">
+            </fieldset>
+        </form>
+    </section>
+
+    <footer>
+        <hr />
+        &copy; Me
+    </footer>
+</body>
+</html>
