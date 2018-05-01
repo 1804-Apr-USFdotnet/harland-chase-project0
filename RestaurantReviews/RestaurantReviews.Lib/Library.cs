@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using RestaurantReviews.Data;
-using RestaurantReviews.Model;
-using System.Xml.Serialization;
+using System.Runtime.Serialization.Json;
+using System.IO;
+using System.Configuration;
 
 namespace RestaurantReviews.Lib
 {
@@ -19,20 +18,32 @@ namespace RestaurantReviews.Lib
 
         public Library(string mode)
         {
+            Init(mode);
+        }
+
+        public Library()
+        {
+            string mode = ConfigurationManager.AppSettings["DataManager"];
+            Init(mode);
+
+        }
+
+        private void Init(string mode)
+        {
+
             if (mode.ToLower() == "test")
             {
                 dm = new LocalTestData();
+            }
+            else if (mode.ToLower() == "json")
+            {
+                dm = new LocalJson();
             }
             else
             {
                 dm = new AwsTsqlAccessor();
             }
-            restaurants = new List<Model.Restaurant>(dm.GetRestaurants());
-        }
 
-        public Library()
-        {
-            dm = new AwsTsqlAccessor();
             restaurants = new List<Model.Restaurant>(dm.GetRestaurants());
         }
 
@@ -143,6 +154,7 @@ namespace RestaurantReviews.Lib
             return Search(new string[] { term });
         }
 
+
         public Model.Restaurant[] GetRestaurants()
         {
             return restaurants.ToArray();
@@ -186,15 +198,6 @@ namespace RestaurantReviews.Lib
 
             return null;
         }
-
-        public void Serialize()
-        {
-
-        }
-
-        public void Deserialize()
-        {
-
-        }
+        
     }
 }

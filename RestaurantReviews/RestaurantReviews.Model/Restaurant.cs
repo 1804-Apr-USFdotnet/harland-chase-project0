@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace RestaurantReviews.Model
 {
+    [DataContract]
     public class Restaurant
     {
+        [DataMember]
         public int Id { get; private set; }
+        [DataMember]
         public string Name { get; private set; }
+        [DataMember]
         public double AvgScore { get; private set; }
+        [DataMember]
         private List<Review> reviews;
 
         public Restaurant(int id, string name)
@@ -33,6 +40,11 @@ namespace RestaurantReviews.Model
             {
                 AddReview(r);
             }
+        }
+
+        public bool RemoveReview(Review r)
+        {
+            return reviews.Remove(r);
         }
 
         public Review[] GetReviews()

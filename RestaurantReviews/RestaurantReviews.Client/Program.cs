@@ -14,12 +14,12 @@ namespace RestaurantReviews.Client
         // String constants
         private const string
             // Commands
-            commandSort = "sort",
-            commandSearch = "search",
-            commandDetails = "details",
-            commandReviews = "reviews",
-            commandHelp = "help",
-            commandExit = "exit",
+            commandSort     = "sort",
+            commandSearch   = "search",
+            commandDetails  = "details",
+            commandReviews  = "reviews",
+            commandHelp     = "help",
+            commandExit     = "exit",
 
             // top command flags
             flagTopN = "-n", flagAsc = "-a", flagSort = "-s",
@@ -27,12 +27,12 @@ namespace RestaurantReviews.Client
             sortScore = "s", sortAlpha = "n", sortNumRev = "r",
 
             // Messages
-            errorPrefix = "Error: ",
-            errorArgNumInval = errorPrefix + "Invalid number of arguments.",
-            errorArgFormInval = errorPrefix + "Invalid input format.",
-            errorFlagArgInval = errorPrefix + "Unrecognized flag argument",
-            errorNoResults = errorPrefix + "No results found.",
-            errorNoFind = errorPrefix + "Couldn't find specified restaurant.",
+            errorPrefix         = "Error: ",
+            errorArgNumInval    = errorPrefix + "Invalid number of arguments.",
+            errorArgFormInval   = errorPrefix + "Invalid input format.",
+            errorFlagArgInval   = errorPrefix + "Unrecognized flag argument",
+            errorNoResults      = errorPrefix + "No results found.",
+            errorNoFind         = errorPrefix + "Couldn't find specified restaurant.",
             unrecognizedCommand = "Unrecognized command. Type '"+commandHelp+"' for a list of commands.",
 
             welcomeString = "Welcome to the Restaurant Reviews console UI.  Type '"+commandHelp+"' to see a list of commands.",
@@ -169,7 +169,6 @@ namespace RestaurantReviews.Client
                             Console.WriteLine(errorNoFind);
                         }
                         break;
-
 
                     case "?":
                     case "??":
